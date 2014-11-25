@@ -29,7 +29,7 @@ class AlphaPaginator implements IPaginator {
 		return $o;
 	}
 	
-	function outputLinks(IPaginator $paginator,IPaginationTemplate $template){
+	function outputLinks(Output\IPaginator $paginator,IPaginationTemplate $template){
 		$paginator->Output(ceil($this->totalRows/$this->perPage), $template);
 	}
 }

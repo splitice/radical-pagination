@@ -1,5 +1,5 @@
 <?php
-namespace Radical\Pagination\Output\Internal;
+namespace Radical\Web\Pagination\Output\Internal;
 
 use Radical\Web\Pagination\Output\IPaginator;
 use Radical\Web\Pagination\Output\Template\IPaginationTemplate;
