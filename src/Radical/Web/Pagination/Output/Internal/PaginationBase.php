@@ -25,15 +25,6 @@ abstract class PaginationBase implements IPaginator {
 	public function getCurrent() {
 		return $this->current;
 	}
-
-	private function _noFollow($i){
-		if($this->nofollow){
-			if($this->nofollow()){
-				return ' rel="nofollow"';
-			}
-		}
-		return '';
-	}
 	function output($last,IPaginationTemplate $template){
 		if($last == 1){
 			echo $template->onePage();

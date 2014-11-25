@@ -17,7 +17,6 @@ class Bootstrap implements IPaginationTemplate {
 		return '';
 	}
 	function pageLink(IPaginator $paginator,$page,$isCurrent=false){
-		$url = '';
 		$url = $paginator->toURL($page);
 		$ret = '';
 		$ret .= '<li'.($isCurrent?' class="active"':'').'><a href="'.$url.'">'.$page.'</a></li>';

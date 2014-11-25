@@ -18,7 +18,6 @@ class Standard implements IPaginationTemplate {
 	}
 	private $firstPage = null;
 	function pageLink(IPaginator $paginator,$page,$isCurrent=false){
-		$url = '';
 		$url = $paginator->toURL($page);
 		$ret = '';
 		if($this->firstPage == null){
