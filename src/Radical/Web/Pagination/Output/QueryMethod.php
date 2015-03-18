@@ -5,8 +5,9 @@ use Radical\Utility\Net\URL;
 
 class QueryMethod extends Internal\PaginationBase {
 	protected $query;
+	protected $defaultPage;
 	
-	function __construct($url = null,$query = 'page'){
+	function __construct($url = null,$query = 'page', $defaultPage = 1){
 		//Create URL object
 		if($url == null){
 			$url = URL::fromRequest();
@@ -21,14 +22,15 @@ class QueryMethod extends Internal\PaginationBase {
 			unset($query_string[$query]);
 			$url->getPath()->setQuery($query_string);
 		}else{
-			$this->current = 1;
+			$this->current = $defaultPage;
 		}
 		
 		$this->query = $query;
+		$this->defaultPage = $defaultPage;
 		parent::__construct($url);
 	}
-	function toURL($page = 1){
-		if($page<=1){
+	function toURL($page = null){
+		if($page==$this->defaultPage || $page < 0){
 			return $this->url;
 		}else{
 			$url = clone $this->url;

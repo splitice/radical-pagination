@@ -26,6 +26,9 @@ abstract class PaginationBase implements IPaginator {
 		return $this->current;
 	}
 	function output($last,IPaginationTemplate $template){
+		if($this->current == -1){
+			$this->current = $last;
+		}
 		if($last == 1){
 			echo $template->onePage();
 			return;

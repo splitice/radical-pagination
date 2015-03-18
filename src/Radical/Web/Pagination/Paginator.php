@@ -20,12 +20,53 @@ class Paginator implements IPaginator {
 		$this->source = $source;
 		$this->page = $page;
 		$this->perPage = $perPage;
-		$this->set = $this->source->get_limit(($this->page-1)*$this->perPage, $this->perPage);
-		$this->totalRows = $this->source->getCount();
+
+		$count = $this->source->getCount();
+
+		if($page == -1) {
+			$page = $count == 0 ? 0 :floor(($count -1) / $perPage);
+			$this->page = $page + 1;
+		}else{
+			$page = $this->page - 1;
+		}
+
+		$start = $page*$this->perPage;
+
+		$this->set = $this->source->get_limit($start, $this->perPage);
+		$this->totalRows = $count;
 	}
-	
+
+	/**
+	 * @return float
+	 */
+	public function getPage()
+	{
+		return $this->page;
+	}
+
+	/**
+	 * @return int
+	 */
+	public function getPerPage()
+	{
+		return $this->perPage;
+	}
+
+	/**
+	 * @return mixed
+	 */
+	public function getTotalRows()
+	{
+		return $this->totalRows;
+	}
+
+
+
 	public function getIterator() {
 		$o = $this->set;
+        if(is_array($o)){
+            return new \ArrayIterator($o);
+        }
 		while($o instanceof \IteratorAggregate){
 			$o = $o->getIterator();
 		}
