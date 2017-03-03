@@ -5,7 +5,7 @@ use Radical\Web\Pagination\Output\IPaginator;
 
 class Bootstrap implements IPaginationTemplate {
 	function onePage(){
-		return '1 of 1';
+		return 'Page <strong>1</strong> of <strong>1</strong>';
 	}
 	function prevLink(IPaginator $paginator,$page){
 		return '<li><a href="'.$paginator->toURL($page).'">&laquo; Prev</a></li>';
