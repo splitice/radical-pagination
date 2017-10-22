@@ -22,4 +22,14 @@ class Bootstrap implements IPaginationTemplate {
 		$ret .= '<li'.($isCurrent?' class="active"':'').'><a href="'.$url.'">'.$page.'</a></li>';
 		return $ret;
 	}
+
+	function start()
+	{
+		return '<ul class="pagination">';
+	}
+
+	function end()
+	{
+		return '</ul>';
+	}
 }

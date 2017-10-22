@@ -3,6 +3,8 @@ namespace Radical\Web\Pagination\Output\Template;
 use Radical\Web\Pagination\Output\IPaginator;
 
 interface IPaginationTemplate {
+	function start();
+	function end();
 	function onePage();
 	function prevLink(IPaginator $paginator,$page);
 	function nextLink(IPaginator $paginator,$page);

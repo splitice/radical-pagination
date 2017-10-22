@@ -29,4 +29,14 @@ class Standard implements IPaginationTemplate {
 		}
 		return $ret;
 	}
+
+	function start()
+	{
+		return '';
+	}
+
+	function end()
+	{
+		return '';
+	}
 }

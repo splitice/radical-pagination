@@ -1,6 +1,7 @@
 <?php
 namespace Radical\Web\Pagination\Output\Internal;
 
+use Radical\Database\SQL\SelectStatement;
 use Radical\Web\Pagination\Output\IPaginator;
 use Radical\Web\Pagination\Output\Template\IPaginationTemplate;
 
@@ -20,17 +21,19 @@ abstract class PaginationBase implements IPaginator {
 	}
 	
 	/**
-	 * @return the $current
+	 * @return int $current
 	 */
 	public function getCurrent() {
 		return $this->current;
 	}
 	function output($last,IPaginationTemplate $template){
+		echo $template->start();
 		if($this->current == -1){
 			$this->current = $last;
 		}
 		if($last == 1){
 			echo $template->onePage();
+			echo $template->end();
 			return;
 		}
 		$istart=max($this->current-5,1);
@@ -47,5 +50,6 @@ abstract class PaginationBase implements IPaginator {
 		if($this->current<$last){
 			echo $template->nextLink($this, $this->current+1);
 		}
+		echo $template->end();
 	}
 }
